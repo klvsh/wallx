@@ -53,6 +53,8 @@ def generate_image():
     img_data = generate_gradient(
         img_width, img_height, start_rgb, stop_rgb, is_horizontal=False)
 
+    # add_stars(img_data, configuration.stars)
+
     terrain_heights = generate_terrain(img_width, img_height)
 
     # Draw terrain

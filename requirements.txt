@@ -3,6 +3,8 @@ autopep8==1.5.6
 isort==5.8.0
 lazy-object-proxy==1.6.0
 mccabe==0.6.1
+numpy==1.20.2
+Pillow==8.2.0
 pycodestyle==2.7.0
 pylint==2.7.4
 toml==0.10.2

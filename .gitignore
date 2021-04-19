@@ -2,3 +2,4 @@ venv
 *.pyc
 *.pyo
 __pycache__
+*.jpg

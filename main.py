@@ -35,9 +35,8 @@ def generate_gradient(width, height, start_rgb, stop_rgb):
 
 def generate_image():
     img_data = generate_gradient(
-        img_width*4, img_height*4, (10, 10, 10, 50), (49, 42, 68, 100))
+        img_width, img_height, (10, 10, 10, 50), (49, 42, 68, 100))
     img = Image.fromarray(np.uint8(img_data))
-    # img = img.resize((img_width, img_height))
     img.save('gray_gradient_h.png', quality=95)
 
 

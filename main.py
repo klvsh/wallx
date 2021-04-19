@@ -3,11 +3,11 @@
 #   - https://note.nkmk.me/en/python-numpy-generate-gradation-image/
 #
 
-import random
 import numpy as np
 from PIL import Image
 
 from terrain import generate_terrain
+from configuration import ConfigurationGenerator
 
 img_width = 1280
 img_height = 720
@@ -40,10 +40,10 @@ def generate_gradient(width, height, start_rgb, stop_rgb, is_horizontal=True):
 
 
 def generate_image():
-    # creating backdrop Day/Night
-    phase = random.choice(["day", "night"])
+    generator = ConfigurationGenerator()
+    configuration = generator.generate("arpit_bhayani")
 
-    if phase == "day":
+    if configuration.phase == "day":
         start_rgb = (56, 182, 255, 255)
         stop_rgb = (255, 255, 255, 255)
     else:

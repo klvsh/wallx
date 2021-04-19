@@ -24,7 +24,7 @@ def generate_2d_gradient(start, stop, width, height):
 def generate_gradient(width, height, start_rgb, stop_rgb):
     # create base image data
     # height, width, 3 per pixel for RGB
-    image_data = np.zeros((height, width, 3), dtype=np.float)
+    image_data = np.zeros((height, width, 4), dtype=np.float)
 
     for i, (start_color, stop_color) in enumerate(zip(start_rgb, stop_rgb)):
         image_data[:, :, i] = generate_2d_gradient(
@@ -35,9 +35,10 @@ def generate_gradient(width, height, start_rgb, stop_rgb):
 
 def generate_image():
     img_data = generate_gradient(
-        img_width, img_height, (0, 0, 0), (255, 255, 255))
+        img_width*4, img_height*4, (10, 10, 10, 50), (49, 42, 68, 100))
     img = Image.fromarray(np.uint8(img_data))
-    img.save('gray_gradient_h.jpg', quality=95)
+    # img = img.resize((img_width, img_height))
+    img.save('gray_gradient_h.png', quality=95)
 
 
 generate_image()

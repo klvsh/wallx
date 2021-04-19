@@ -6,8 +6,10 @@
 import numpy as np
 from PIL import Image
 
-img_width = 1024
-img_height = 728
+from terrain import generate_terrain
+
+img_width = 1280
+img_height = 720
 
 
 def generate_2d_gradient(start, stop, width, height):
@@ -34,10 +36,19 @@ def generate_gradient(width, height, start_rgb, stop_rgb):
 
 
 def generate_image():
+    terrain_heights = generate_terrain(img_width, img_height)
     img_data = generate_gradient(
-        img_width, img_height, (10, 10, 10, 50), (49, 42, 68, 100))
+        img_width, img_height, (0, 0, 0, 255), (0, 0, 0, 255))
+
+    for index, height in enumerate(terrain_heights):
+        height = int(height)
+        img_data[height, index, 0] = 255
+        img_data[height, index, 1] = 255
+        img_data[height, index, 2] = 255
+        img_data[height, index, 3] = 255
+
     img = Image.fromarray(np.uint8(img_data))
-    img.save('gray_gradient_h.png', quality=95)
+    img.save('wallpaper.png')
 
 
 generate_image()

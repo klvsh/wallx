@@ -88,7 +88,6 @@ def generate_terrain(width, height):
     terrain = generate_smooth_terrain(width)
     elevation = int((0.3 + (random.random() * 0.2)) * height)
     terrain_height = int((0.1 + (random.random() * 0.2)) * height)
-    print(elevation, terrain_height, max(terrain))
     return [
         height - (elevation + mapv(h, 0, 1, 0, terrain_height))
         for h in terrain

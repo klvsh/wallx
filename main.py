@@ -42,10 +42,13 @@ def generate_image():
 
     for index, height in enumerate(terrain_heights):
         height = int(height)
-        img_data[height, index, 0] = 255
-        img_data[height, index, 1] = 255
-        img_data[height, index, 2] = 255
-        img_data[height, index, 3] = 255
+        line_width = 6
+        for h in range(-line_width//2, line_width//2):
+            img_data[height+h, index, 0] = 255
+            img_data[height+h, index, 1] = 255
+            img_data[height+h, index, 2] = 255
+            img_data[height+h, index, 3] = 255 - (abs(h) * 50)
+        
 
     img = Image.fromarray(np.uint8(img_data))
     img.save('wallpaper.png')

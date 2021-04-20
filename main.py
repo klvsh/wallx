@@ -57,7 +57,7 @@ def add_terrain(img_data):
 
 def generate_image():
     generator = ConfigurationGenerator()
-    configuration = generator.generate("arpit_bhayani")
+    configuration = generator.generate(seed="arpit_bhayani")
 
     img_data = generate_gradient(
         img_width,

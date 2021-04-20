@@ -56,9 +56,10 @@ class ConfigurationGenerator:
     def __init__(self):
         pass
 
-    def generate(self, seed):
-        print("seed", seed)
-        random.seed(seed)
+    def generate(self, seed=None):
+        if seed:
+            print("seed", seed)
+            random.seed(seed)
         phase = random.choice(POSSIBLE_PHASES)
 
         stars = random.choice(POSSIBLE_STARS) \

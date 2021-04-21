@@ -12,7 +12,7 @@ def draw_moon(img_data, moon_phase):
     if not moon_phase:
         return img_data
 
-    moon_size = int(0.05 * min(img_data.shape[0], img_data.shape[1]))
+    moon_size = int(0.08 * min(img_data.shape[0], img_data.shape[1]))
 
     pos_x = random.randint(
         (2 * moon_size), (img_data.shape[1] - 3 * moon_size)
@@ -35,7 +35,7 @@ def draw_moon(img_data, moon_phase):
         draw_circle(
             pos_x + moon_size / 2, pos_y + moon_size / 2,
             (moon_size * 10) * ((rings - i) / rings),
-            (255, 255, 255, int(25 * (i / rings))),
+            (255, 255, 255, int(40 * (i / rings))),
             draw
         )
 

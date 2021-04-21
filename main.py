@@ -7,10 +7,12 @@ import numpy as np
 
 from PIL import Image
 
-from configuration import ConfigurationGenerator
+from elements.sun import draw_sun
 from elements.moon import draw_moon
 from elements.terrain import draw_terrain
 from elements.backdrop import draw_backdrop
+
+from configuration import ConfigurationGenerator
 
 
 img_width = 1280
@@ -27,6 +29,7 @@ def generate_image():
     # add_stars(img_data, configuration.stars)
     img_data = draw_terrain(img_data)
     img_data = draw_moon(img_data, configuration.moon_phase)
+    img_data = draw_sun(img_data, configuration.sun_phase)
 
     img = Image.fromarray(np.uint8(img_data))
     img.save('wallpaper.png')

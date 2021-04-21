@@ -55,15 +55,21 @@ POSSIBLE_MOON_PHASES = [
     POSSIBLE_MOON_PHASES_HALFTILT_RIGHT,
 ]
 
+POSSIBLE_SUN_PHASES_1 = (0, 360)
+POSSIBLE_SUN_PHASES = [
+    POSSIBLE_SUN_PHASES_1
+]
+
 
 class ImageConfiguration:
     def __init__(self, phase="day", stars=False, backdrop=None,
-                 terrain_shade=None, moon_phase=None):
+                 terrain_shade=None, moon_phase=None, sun_phase=None):
         self.phase = phase
         self.stars = stars
         self.backdrop = backdrop
         self.terrain_shade = terrain_shade
         self.moon_phase = moon_phase
+        self.sun_phase = sun_phase
 
 
 class ConfigurationGenerator:
@@ -80,7 +86,7 @@ class ConfigurationGenerator:
             if phase == POSSIBLE_PHASES_NIGHT \
             else POSSIBLE_STARS_NO_STARS
 
-        moon_phase = None
+        moon_phase, sun_phase = None, None
 
         if phase == POSSIBLE_PHASES_NIGHT:
             backdrop = random.choice(POSSIBLE_BACKDROP_NIGHT)
@@ -89,6 +95,7 @@ class ConfigurationGenerator:
         elif phase == POSSIBLE_PHASES_DAY:
             backdrop = random.choice(POSSIBLE_BACKDROP_DAY)
             terrain_shade = random.choice(POSSIBLE_TERRAINS_DAY)
+            sun_phase = random.choice(POSSIBLE_SUN_PHASES)
         else:
             backdrop = random.choice(POSSIBLE_BACKDROP_NIGHT)
             terrain_shade = random.choice(POSSIBLE_TERRAINS_NIGHT)
@@ -100,6 +107,7 @@ class ConfigurationGenerator:
             "backdrop": backdrop,
             "terrain_shade": terrain_shade,
             "moon_phase": moon_phase,
+            "sun_phase": sun_phase,
         }
 
         return ImageConfiguration(**params)

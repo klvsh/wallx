@@ -1,6 +1,11 @@
 import math
 import random
 
+import numpy as np
+from numpy import asarray
+
+from PIL import Image
+
 
 def mapv(v, ol, oh, nl, nh):
     """maps the value `v` from old range [ol, oh] to new range [nl, nh]
@@ -96,14 +101,20 @@ def generate_terrain(width, height):
 
 
 def draw_terrain(img_data):
-    (height, width, _) = img_data.shape
-    terrain_heights = generate_terrain(width, height)
+    img_data_terrain = np.zeros(img_data.shape, dtype=float)
+    img_data_terrain = img_data_terrain.reshape(img_data.shape)
+
+    terrain_heights = generate_terrain(img_data.shape[1], img_data.shape[0])
 
     # Draw terrain
     for index, height in enumerate(terrain_heights):
         height = int(height)
         line_width = 8
         for h in range(-line_width // 2, line_width // 2):
-            img_data[height + h, index] = [125, 125, 125, 255 - (abs(h) * 60)]
+            img_data_terrain[height + h, index] = [125,
+                                                   125, 125, 255 - (abs(h) * 60)]
 
-    return img_data
+    img = Image.fromarray(np.uint8(img_data), mode="RGBA")
+    img_terrain = Image.fromarray(np.uint8(img_data_terrain), mode="RGBA")
+    img = Image.alpha_composite(img, img_terrain)
+    return asarray(img)

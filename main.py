@@ -3,6 +3,7 @@
 #   - https://note.nkmk.me/en/python-numpy-generate-gradation-image/
 #
 
+import random
 import numpy as np
 from numpy import asarray
 
@@ -49,21 +50,31 @@ def add_terrain(img_data):
     # Draw terrain
     for index, height in enumerate(terrain_heights):
         height = int(height)
-        line_width = 6
+        line_width = 8
         for h in range(-line_width // 2, line_width // 2):
-            img_data[height + h, index, 0] = 255
-            img_data[height + h, index, 1] = 255
-            img_data[height + h, index, 2] = 255
-            img_data[height + h, index, 3] = 255 - (abs(h) * 50)
+            img_data[height + h, index] = [125, 125, 125, 255 - (abs(h) * 60)]
 
     return img_data
 
 
 def add_moon(img_data, moon_phase):
+    if not moon_phase:
+        return img_data
+
+    moon_size = int(0.05 * min(*img_data.shape))
+
+    pos_x = random.randint(
+        (2 * moon_size), (img_data.shape[1] - 3 * moon_size)
+    )
+    pos_y = random.randint(
+        int(0.5 * moon_size), int(0.2 * (img_data.shape[0]))
+    )
+
     img_moon = Image.new(
         "RGBA", (img_data.shape[1], img_data.shape[0]), (0, 0, 0, 0))
     draw = ImageDraw.Draw(img_moon)
-    draw.chord((0, 0, 45, 45), moon_phase[0], moon_phase[1], fill="white")
+    draw.chord((pos_x + 0, pos_y + 0, pos_x + 45, pos_y + 45),
+               moon_phase[0], moon_phase[1], fill="white")
     moon = np.array(img_moon.getdata())
     moon = moon.reshape(img_data.shape)
 
@@ -74,7 +85,7 @@ def add_moon(img_data, moon_phase):
 
 def generate_image():
     generator = ConfigurationGenerator()
-    configuration = generator.generate(seed="arpit_bhaani")
+    configuration = generator.generate()
 
     img_data = generate_gradient(
         img_width,

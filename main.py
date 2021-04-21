@@ -10,7 +10,7 @@ from PIL import Image
 from configuration import ConfigurationGenerator
 from elements.moon import draw_moon
 from elements.terrain import draw_terrain
-from elements.gradient import generate_gradient
+from elements.backdrop import draw_backdrop
 
 
 img_width = 1280
@@ -22,13 +22,7 @@ def generate_image():
     generator = ConfigurationGenerator()
     configuration = generator.generate()
 
-    img_data = generate_gradient(
-        img_width,
-        img_height,
-        configuration.backdrop.start_rgba,
-        configuration.backdrop.stop_rgba,
-        is_horizontal=False
-    )
+    img_data = draw_backdrop(img_width, img_height, configuration)
 
     # add_stars(img_data, configuration.stars)
     img_data = draw_terrain(img_data)

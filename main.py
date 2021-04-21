@@ -57,6 +57,14 @@ def add_terrain(img_data):
     return img_data
 
 
+def draw_circle(x, y, r, color, draw):
+    """Function to draw a circle at given center with given
+    radius and colour
+    """
+    x, y, r = int(x), int(y), int(r)  # Converting possible floats to int
+    draw.ellipse([x - r, y - r, x + r, y + r], fill=color)
+
+
 def add_moon(img_data, moon_phase):
     if not moon_phase:
         return img_data
@@ -71,10 +79,28 @@ def add_moon(img_data, moon_phase):
     )
 
     img_moon = Image.new(
-        "RGBA", (img_data.shape[1], img_data.shape[0]), (0, 0, 0, 0))
+        "RGBA",
+        (img_data.shape[1], img_data.shape[0]),
+        (0, 0, 0, 0)
+    )
+
     draw = ImageDraw.Draw(img_moon)
-    draw.chord((pos_x + 0, pos_y + 0, pos_x + 45, pos_y + 45),
-               moon_phase[0], moon_phase[1], fill="white")
+
+    # draw the glow of the moon
+    rings = 100
+    for i in range(rings):
+        draw_circle(
+            pos_x + moon_size / 2, pos_y + moon_size / 2,
+            (moon_size * 10) * ((rings - i) / rings),
+            (255, 255, 255, int(25 * (i / rings))),
+            draw
+        )
+
+    # draw the moon
+    draw.chord((pos_x + 0, pos_y + 0, pos_x + moon_size, pos_y + moon_size),
+               moon_phase[0], moon_phase[1], fill=(255, 255, 255, 255))
+
+    # add it to the base image
     moon = np.array(img_moon.getdata())
     moon = moon.reshape(img_data.shape)
 
@@ -86,7 +112,7 @@ def add_moon(img_data, moon_phase):
 def generate_image():
     assert img_width >= img_height >= 360
     generator = ConfigurationGenerator()
-    configuration = generator.generate()
+    configuration = generator.generate(seed="arpit_bhaani")
 
     img_data = generate_gradient(
         img_width,

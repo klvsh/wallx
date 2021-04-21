@@ -1,5 +1,7 @@
 import random
 
+from PIL import Image
+
 class Backdrop:
     def __init__(self, start_rgba, stop_rgba):
         self.start_rgba = start_rgba
@@ -45,12 +47,23 @@ POSSIBLE_TERRAINS_NIGHT = [
     POSSIBLE_TERRAINS_NIGHT_1,
 ]
 
+POSSIBLE_MOON_PHASES_FULL = (0, 360)
+POSSIBLE_MOON_PHASES_HALFTILT_LEFT = (45, 45 + 180)
+POSSIBLE_MOON_PHASES_HALFTILT_RIGHT = (45 + 270, 45 + 180 + 270)
+POSSIBLE_MOON_PHASES = [
+    POSSIBLE_MOON_PHASES_FULL,
+    POSSIBLE_MOON_PHASES_HALFTILT_LEFT,
+    POSSIBLE_MOON_PHASES_HALFTILT_RIGHT,
+]
+
 class ImageConfiguration:
-    def __init__(self, phase="day", stars=False, backdrop=None, terrain_shade=None):
+    def __init__(self, phase="day", stars=False, backdrop=None,
+                       terrain_shade=None, moon_phase=None):
         self.phase = phase
         self.stars = stars
         self.backdrop = backdrop
         self.terrain_shade = terrain_shade
+        self.moon_phase = moon_phase
 
 class ConfigurationGenerator:
     def __init__(self):
@@ -66,21 +79,26 @@ class ConfigurationGenerator:
                     if phase == POSSIBLE_PHASES_NIGHT \
                         else POSSIBLE_STARS_NO_STARS
         
+        moon_phase = None
+
         if phase == POSSIBLE_PHASES_NIGHT:
             backdrop = random.choice(POSSIBLE_BACKDROP_NIGHT)
             terrain_shade = random.choice(POSSIBLE_TERRAINS_NIGHT)
+            moon_phase = random.choice(POSSIBLE_MOON_PHASES)
         elif phase == POSSIBLE_PHASES_DAY:
             backdrop = random.choice(POSSIBLE_BACKDROP_DAY)
             terrain_shade = random.choice(POSSIBLE_TERRAINS_DAY)
         else:
             backdrop = random.choice(POSSIBLE_BACKDROP_NIGHT)
-            terrain_shade = random.choice(POSSIBLE_TERRAINS_DAY)
+            terrain_shade = random.choice(POSSIBLE_TERRAINS_NIGHT)
+            moon_phase = random.choice(POSSIBLE_MOON_PHASES)
 
         params = {
             "phase": phase,
             "stars": stars,
             "backdrop": backdrop,
             "terrain_shade": terrain_shade,
+            "moon_phase": moon_phase,
         }
 
         return ImageConfiguration(**params)

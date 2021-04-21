@@ -4,7 +4,9 @@
 #
 
 import numpy as np
-from PIL import Image
+from numpy import asarray
+
+from PIL import Image, ImageDraw
 
 from terrain import generate_terrain
 from configuration import ConfigurationGenerator
@@ -54,10 +56,25 @@ def add_terrain(img_data):
             img_data[height + h, index, 2] = 255
             img_data[height + h, index, 3] = 255 - (abs(h) * 50)
 
+    return img_data
+
+
+def add_moon(img_data, moon_phase):
+    img_moon = Image.new(
+        "RGBA", (img_data.shape[1], img_data.shape[0]), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img_moon)
+    draw.chord((0, 0, 45, 45), moon_phase[0], moon_phase[1], fill="white")
+    moon = np.array(img_moon.getdata())
+    moon = moon.reshape(img_data.shape)
+
+    img = Image.fromarray(np.uint8(img_data), mode="RGBA")
+    img = Image.alpha_composite(img, img_moon)
+    return asarray(img)
+
 
 def generate_image():
     generator = ConfigurationGenerator()
-    configuration = generator.generate(seed="arpit_bhayani")
+    configuration = generator.generate(seed="arpit_bhaani")
 
     img_data = generate_gradient(
         img_width,
@@ -68,7 +85,8 @@ def generate_image():
     )
 
     # add_stars(img_data, configuration.stars)
-    add_terrain(img_data)
+    img_data = add_terrain(img_data)
+    img_data = add_moon(img_data, configuration.moon_phase)
 
     img = Image.fromarray(np.uint8(img_data))
     img.save('wallpaper.png')

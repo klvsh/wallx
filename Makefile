@@ -3,8 +3,8 @@ init:
 	venv/bin/pip install -r requirements.txt
 
 lint:
-	autopep8 --in-place --aggressive --recursive main.py terrain.py
-	pylint main.py terrain.py
+	autopep8 --in-place --aggressive --recursive *.py
+	pylint *.py
 
 clean:
 	find udemy -name "*.pyc" -exec rm -f {} \;

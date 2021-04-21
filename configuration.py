@@ -1,6 +1,5 @@
 import random
 
-from PIL import Image
 
 class Backdrop:
     def __init__(self, start_rgba, stop_rgba):
@@ -56,14 +55,16 @@ POSSIBLE_MOON_PHASES = [
     POSSIBLE_MOON_PHASES_HALFTILT_RIGHT,
 ]
 
+
 class ImageConfiguration:
     def __init__(self, phase="day", stars=False, backdrop=None,
-                       terrain_shade=None, moon_phase=None):
+                 terrain_shade=None, moon_phase=None):
         self.phase = phase
         self.stars = stars
         self.backdrop = backdrop
         self.terrain_shade = terrain_shade
         self.moon_phase = moon_phase
+
 
 class ConfigurationGenerator:
     def __init__(self):
@@ -76,9 +77,9 @@ class ConfigurationGenerator:
         phase = random.choice(POSSIBLE_PHASES)
 
         stars = random.choice(POSSIBLE_STARS) \
-                    if phase == POSSIBLE_PHASES_NIGHT \
-                        else POSSIBLE_STARS_NO_STARS
-        
+            if phase == POSSIBLE_PHASES_NIGHT \
+            else POSSIBLE_STARS_NO_STARS
+
         moon_phase = None
 
         if phase == POSSIBLE_PHASES_NIGHT:

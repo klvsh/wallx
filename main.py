@@ -61,7 +61,7 @@ def add_moon(img_data, moon_phase):
     if not moon_phase:
         return img_data
 
-    moon_size = int(0.05 * min(*img_data.shape))
+    moon_size = int(0.05 * min(img_data.shape[0], img_data.shape[1]))
 
     pos_x = random.randint(
         (2 * moon_size), (img_data.shape[1] - 3 * moon_size)
@@ -84,6 +84,7 @@ def add_moon(img_data, moon_phase):
 
 
 def generate_image():
+    assert img_width >= img_height >= 360
     generator = ConfigurationGenerator()
     configuration = generator.generate()
 

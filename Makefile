@@ -7,9 +7,9 @@ lint:
 	pylint *.py elements
 
 clean:
-	find udemy -name "*.pyc" -exec rm -f {} \;
-	find udemy -name "*.pyo" -exec rm -f {} \;
-	find udemy -name "__pycache__" -exec rm -f {} \;
+	find elements -name "*.pyc" -exec rm -rf {} \;
+	find elements -name "*.pyo" -exec rm -rf {} \;
+	find elements -name "__pycache__" -exec rm -rf {} \;
 
 run:
 	python main.py

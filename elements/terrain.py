@@ -92,3 +92,17 @@ def generate_terrain(width, height):
         height - (elevation + mapv(h, 0, 1, 0, terrain_height))
         for h in terrain
     ]
+
+
+def draw_terrain(img_data):
+    (height, width, _) = img_data.shape
+    terrain_heights = generate_terrain(width, height)
+
+    # Draw terrain
+    for index, height in enumerate(terrain_heights):
+        height = int(height)
+        line_width = 8
+        for h in range(-line_width // 2, line_width // 2):
+            img_data[height + h, index] = [125, 125, 125, 255 - (abs(h) * 60)]
+
+    return img_data

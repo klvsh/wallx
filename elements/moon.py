@@ -9,7 +9,8 @@ from elements.shapes import draw_circle
 
 
 def draw_moon(img_data):
-    moon_size = int(0.08 * min(img_data.shape[0], img_data.shape[1]))
+    moon_size = int((0.05 + (random.random() * 0.05)) *
+                    min(img_data.shape[0], img_data.shape[1]))
 
     pos_x = random.randint(
         (2 * moon_size), (img_data.shape[1] - 3 * moon_size)

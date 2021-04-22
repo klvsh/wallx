@@ -31,7 +31,7 @@ def cosp(a, b, mu):
 def generate_naive_terrain(width):
     """returns the list of integers representing height at each point.
     """
-    return [0] + [random.random() for i in range(width - 2)] + [0]
+    return [random.random() for i in range(width)]
 
 
 def generate_smooth_terrain(width, interpolation_fn=cosp, iterations=8):

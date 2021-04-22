@@ -90,13 +90,42 @@ THEME_MIGHTY_BLUE = Theme(
     "Mighty Blue",
     possible_backdrops=[
         Gradient((1, 6, 15, 255), (18, 56, 90, 255)),
+        Gradient((4, 8, 22, 255), (47, 108, 153, 255)),
+        Gradient((5, 42, 58, 255), (65, 112, 138, 255)),
+        Gradient((8, 26, 25, 255), (18, 56, 90, 255)),
     ],
     possible_terrains=[
         Terrain(
-            gradient=Gradient((165, 92, 27, 255), (0, 0, 0, 255)),
+            gradient=Gradient((1, 1, 1, 255), (0, 0, 0, 255)),
+            min_iterations=10,
+            max_iterations=10,
         ),
     ],
-    max_terrains=2,
+    max_terrains=1,
+    possible_stars_density=[
+        StarsDensity(0.05, 0.30),
+    ],
+    possible_moon_arcs=[
+        Moon.from_chord(0, 360),
+        Moon.from_chord(45, 45 + 180),
+        Moon.from_chord(45 + 270, 45 + 180 + 270),
+    ],
+)
+
+THEME_GLEAMY_GREEN = Theme(
+    "Gleamy Green",
+    possible_backdrops=[
+        Gradient((2, 27, 31, 255), (63, 82, 86, 255)),
+        Gradient((2, 27, 31, 255), (7, 45, 46, 255)),
+    ],
+    possible_terrains=[
+        Terrain(
+            gradient=Gradient((14, 63, 67, 255), (63, 93, 99, 255)),
+            min_iterations=10,
+            max_iterations=10,
+        ),
+    ],
+    max_terrains=1,
     possible_stars_density=[
         StarsDensity(0.05, 0.30),
     ],
@@ -143,6 +172,7 @@ POSSIBLE_THEMES = [
     THEME_EMERALD,
     THEME_PITCH_BLACK,
     THEME_MIGHTY_BLUE,
+    THEME_GLEAMY_GREEN,
 ]
 
 

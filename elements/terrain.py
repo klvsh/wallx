@@ -89,18 +89,15 @@ def generate_smooth_terrain(width, interpolation_fn=cosp, iterations=8):
     return [sum(x) / weight_sum for x in zip(*terrains)]
 
 
-def generate_terrain(width, height):
-    iterations = random.randint(8, 9)
+def generate_terrain(width, terrain_height, iterations=8):
     terrain = generate_smooth_terrain(width, iterations=iterations)
-    elevation = int((0.3 + (random.random() * 0.2)) * height)
-    terrain_height = int((0.1 + (random.random() * 0.2)) * height)
     return [
-        (elevation + mapv(h, 0, 1, 0, terrain_height))
+        mapv(h, 0, 1, 0, terrain_height)
         for h in terrain
     ]
 
 
-def draw_terrain(img_data, terrain):
+def draw_terrain(img_data, terrain, terrain_height=360, elevation=0):
     img_width, img_height = img_data.shape[1], img_data.shape[0]
     # colors = [
     #     [5, 20, 39, 255],
@@ -114,7 +111,10 @@ def draw_terrain(img_data, terrain):
     img_data_terrain = np.zeros(img_data.shape, dtype=float)
     img_data_terrain = img_data_terrain.reshape(img_data.shape)
 
-    terrain_heights = generate_terrain(img_width, img_height)
+    iterations = random.randint(terrain.min_iterations, terrain.max_iterations)
+    terrain_heights = generate_terrain(
+        img_width, terrain_height, iterations=iterations)
+    terrain_heights = [h + elevation for h in terrain_heights]
 
     # Draw terrain
     for index, height in enumerate(terrain_heights):

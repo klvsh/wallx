@@ -58,7 +58,10 @@ THEME_PITCH_BLACK = Theme(
             gradient=Gradient((35, 35, 35, 255), (35, 35, 35, 255)),
         ),
         Terrain(
-            gradient=Gradient((10, 10, 10, 255), (10, 10, 10, 255)),
+            gradient=Gradient((30, 30, 30, 255), (30, 30, 30, 255)),
+        ),
+        Terrain(
+            gradient=Gradient((20, 20, 20, 255), (20, 20, 20, 255)),
         ),
         Terrain(
             gradient=Gradient((25, 25, 25, 255), (25, 25, 25, 255)),

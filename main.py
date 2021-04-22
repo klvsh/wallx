@@ -29,8 +29,19 @@ def generate_image():
 
     img_data = draw_stars(img_data)
 
-    terrain = random.choice(configuration.theme.possible_terrains)
-    img_data = draw_terrain(img_data, terrain)
+    total_terrains = random.randint(1, configuration.theme.max_terrains)
+    terrains = random.sample(
+        configuration.theme.possible_terrains,
+        total_terrains)
+
+    max_terrain_height = int((0.3 + random.random() * 0.4) * img_height)
+    elevation = int(random.random() * 0.3 * img_height)
+    for terrain in terrains:
+        img_data = draw_terrain(
+            img_data, terrain, terrain_height=max_terrain_height, elevation=elevation)
+        max_terrain_height = int(
+            (0.5 + random.random() * 0.3) * max_terrain_height)
+        elevation = 0.5 * elevation
 
     img_data = draw_moon(img_data)
 

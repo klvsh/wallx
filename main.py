@@ -16,14 +16,14 @@ from elements.backdrop import draw_backdrop
 from configuration import ConfigurationGenerator
 
 
-img_width = 1280
-img_height = 720
+img_width = 720
+img_height = int(720 * 1.4)
 
 
 def generate_image():
-    assert img_width >= img_height >= 360
+    assert img_width >= 360 <= img_height
     generator = ConfigurationGenerator()
-    configuration = generator.generate(theme="Emerald")
+    configuration = generator.generate()
 
     img_data = draw_backdrop(img_width, img_height, configuration)
 

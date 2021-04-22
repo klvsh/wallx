@@ -56,22 +56,22 @@ THEME_PITCH_BLACK = Theme(
     possible_terrains=[
         Terrain(
             gradient=Gradient((35, 35, 35, 255), (35, 35, 35, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((28, 28, 28, 255), (28, 28, 28, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((21, 21, 21, 255), (21, 21, 21, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((14, 14, 14, 255), (14, 14, 14, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
     ],
@@ -97,22 +97,22 @@ THEME_MIGHTY_BLUE = Theme(
     possible_terrains=[
         Terrain(
             gradient=Gradient((1, 1, 1, 255), (0, 0, 0, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((12, 12, 12, 255), (10, 10, 10, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((8, 23, 39, 255), (8, 23, 39, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((6, 12, 31, 255), (6, 12, 31, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
     ],
@@ -136,22 +136,22 @@ THEME_GLEAMY_GREEN = Theme(
     possible_terrains=[
         Terrain(
             gradient=Gradient((1, 30, 30, 255), (1, 30, 30, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((0, 14, 14, 255), (0, 14, 14, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((0, 21, 21, 255), (0, 21, 21, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((1, 12, 14, 255), (1, 12, 14, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
     ],
@@ -177,17 +177,17 @@ THEME_EMERALD = Theme(
     possible_terrains=[
         Terrain(
             gradient=Gradient((5, 5, 5, 255), (5, 5, 5, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((4, 9, 6, 255), (4, 9, 6, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((16, 10, 10, 255), (16, 10, 10, 255)),
-            min_iterations=10,
+            min_iterations=9,
             max_iterations=10,
         ),
     ],

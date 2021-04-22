@@ -135,12 +135,27 @@ THEME_GLEAMY_GREEN = Theme(
     ],
     possible_terrains=[
         Terrain(
-            gradient=Gradient((14, 63, 67, 255), (63, 93, 99, 255)),
+            gradient=Gradient((1, 30, 30, 255), (1, 30, 30, 255)),
+            min_iterations=10,
+            max_iterations=10,
+        ),
+        Terrain(
+            gradient=Gradient((0, 14, 14, 255), (0, 14, 14, 255)),
+            min_iterations=10,
+            max_iterations=10,
+        ),
+        Terrain(
+            gradient=Gradient((0, 21, 21, 255), (0, 21, 21, 255)),
+            min_iterations=10,
+            max_iterations=10,
+        ),
+        Terrain(
+            gradient=Gradient((1, 12, 14, 255), (1, 12, 14, 255)),
             min_iterations=10,
             max_iterations=10,
         ),
     ],
-    max_terrains=1,
+    max_terrains=3,
     possible_stars_density=[
         StarsDensity(0.05, 0.30),
     ],

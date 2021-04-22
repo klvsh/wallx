@@ -7,7 +7,6 @@ from PIL import Image, ImageDraw
 
 
 def draw_stars(img_data):
-    # TODO: Give random colors to stars.
     star_size = math.ceil(0.001 * min(img_data.shape[0], img_data.shape[1]))
 
     img_star = Image.new(

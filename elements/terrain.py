@@ -120,13 +120,8 @@ def draw_terrain(img_data):
     for index, height in enumerate(terrain_heights):
         height = int(height)
         height_plot = img_height - height
-        if index <= 10:
-            print(img_height - height_plot, height)
         img_data_terrain[height_plot:img_height, index] = np.tile(
             terrain_color, height).reshape((height, 4))
-        # for h in range(-line_width // 2, line_width // 2):
-        #     img_data_terrain[height + h, index] = [125,
-        # 125, 125, 255 - (abs(h) * 60)]
 
     img = Image.fromarray(np.uint8(img_data), mode="RGBA")
     img_terrain = Image.fromarray(np.uint8(img_data_terrain), mode="RGBA")

@@ -7,7 +7,6 @@ import numpy as np
 
 from PIL import Image
 
-from elements.sun import draw_sun
 from elements.moon import draw_moon
 from elements.stars import draw_stars
 from elements.terrain import draw_terrain
@@ -29,8 +28,7 @@ def generate_image():
 
     img_data = draw_stars(img_data)
     img_data = draw_terrain(img_data)
-    img_data = draw_moon(img_data, configuration.moon_phase)
-    img_data = draw_sun(img_data, configuration.sun_phase)
+    img_data = draw_moon(img_data)
 
     img = Image.fromarray(np.uint8(img_data))
     img.save('wallpaper.png')

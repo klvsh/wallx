@@ -95,24 +95,38 @@ def generate_terrain(width, height):
     elevation = int((0.3 + (random.random() * 0.2)) * height)
     terrain_height = int((0.1 + (random.random() * 0.2)) * height)
     return [
-        height - (elevation + mapv(h, 0, 1, 0, terrain_height))
+        (elevation + mapv(h, 0, 1, 0, terrain_height))
         for h in terrain
     ]
 
 
 def draw_terrain(img_data):
+    img_width, img_height = img_data.shape[1], img_data.shape[0]
+    colors = [
+        [5, 20, 39, 255],
+        [11, 39, 76, 255],
+        [26, 0, 39, 255],
+        [1, 1, 1, 255],
+        [7, 22, 35, 255],
+    ]
+    terrain_color = np.array(random.choice(colors))
+
     img_data_terrain = np.zeros(img_data.shape, dtype=float)
     img_data_terrain = img_data_terrain.reshape(img_data.shape)
 
-    terrain_heights = generate_terrain(img_data.shape[1], img_data.shape[0])
+    terrain_heights = generate_terrain(img_width, img_height)
 
     # Draw terrain
     for index, height in enumerate(terrain_heights):
         height = int(height)
-        line_width = 8
-        for h in range(-line_width // 2, line_width // 2):
-            img_data_terrain[height + h, index] = [125,
-                                                   125, 125, 255 - (abs(h) * 60)]
+        height_plot = img_height - height
+        if index <= 10:
+            print(img_height - height_plot, height)
+        img_data_terrain[height_plot:img_height, index] = np.tile(
+            terrain_color, height).reshape((height, 4))
+        # for h in range(-line_width // 2, line_width // 2):
+        #     img_data_terrain[height + h, index] = [125,
+        # 125, 125, 255 - (abs(h) * 60)]
 
     img = Image.fromarray(np.uint8(img_data), mode="RGBA")
     img_terrain = Image.fromarray(np.uint8(img_data_terrain), mode="RGBA")

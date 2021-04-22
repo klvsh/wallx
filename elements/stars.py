@@ -5,10 +5,9 @@ import numpy as np
 from numpy import asarray
 from PIL import Image, ImageDraw
 
-# from elements.shapes import draw_circle
-
 
 def draw_stars(img_data):
+    # TODO: Give random colors to stars.
     star_size = math.ceil(0.001 * min(img_data.shape[0], img_data.shape[1]))
 
     img_star = Image.new(

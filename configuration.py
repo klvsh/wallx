@@ -28,7 +28,7 @@ class Moon:
 
 
 class Terrain:
-    def __init__(self, gradient=None, min_iterations=8, max_iterations=9):
+    def __init__(self, gradient=None, min_iterations=8, max_iterations=10):
         self.gradient = gradient
         self.min_iterations = min_iterations
         self.max_iterations = max_iterations
@@ -56,15 +56,23 @@ THEME_PITCH_BLACK = Theme(
     possible_terrains=[
         Terrain(
             gradient=Gradient((35, 35, 35, 255), (35, 35, 35, 255)),
+            min_iterations=8,
+            max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((28, 28, 28, 255), (28, 28, 28, 255)),
+            min_iterations=8,
+            max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((21, 21, 21, 255), (21, 21, 21, 255)),
+            min_iterations=8,
+            max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((14, 14, 14, 255), (14, 14, 14, 255)),
+            min_iterations=8,
+            max_iterations=10,
         ),
     ],
     max_terrains=3,

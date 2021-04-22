@@ -29,11 +29,12 @@ def draw_moon(img_data, configuration):
 
     # draw the glow of the moon
     rings = 100
+    max_intensity = random.randint(35, 55)
     for i in range(rings):
         draw_circle(
             pos_x + moon_size / 2, pos_y + moon_size / 2,
             (moon_size * 10) * ((rings - i) / rings),
-            (255, 255, 255, int(40 * (i / rings))),
+            (255, 255, 255, int(max_intensity * (i / rings))),
             draw
         )
 

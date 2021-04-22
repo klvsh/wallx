@@ -101,12 +101,22 @@ THEME_MIGHTY_BLUE = Theme(
             max_iterations=10,
         ),
         Terrain(
-            gradient=Gradient((10, 10, 10, 255), (10, 10, 10, 255)),
+            gradient=Gradient((12, 12, 12, 255), (10, 10, 10, 255)),
+            min_iterations=10,
+            max_iterations=10,
+        ),
+        Terrain(
+            gradient=Gradient((8, 23, 39, 255), (8, 23, 39, 255)),
+            min_iterations=10,
+            max_iterations=10,
+        ),
+        Terrain(
+            gradient=Gradient((6, 12, 31, 255), (6, 12, 31, 255)),
             min_iterations=10,
             max_iterations=10,
         ),
     ],
-    max_terrains=2,
+    max_terrains=3,
     possible_stars_density=[
         StarsDensity(0.05, 0.30),
     ],

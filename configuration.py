@@ -67,7 +67,7 @@ THEME_PITCH_BLACK = Theme(
             gradient=Gradient((14, 14, 14, 255), (14, 14, 14, 255)),
         ),
     ],
-    max_terrains=2,
+    max_terrains=3,
     possible_stars_density=[
         StarsDensity(0.10, 0.35),
     ],

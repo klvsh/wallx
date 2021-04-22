@@ -34,14 +34,16 @@ def generate_image():
         configuration.theme.possible_terrains,
         total_terrains)
 
-    max_terrain_height = int((0.3 + random.random() * 0.4) * img_height)
-    elevation = int(random.random() * 0.3 * img_height)
+    max_terrain_height = int((0.4 + random.random() * 0.2) * img_height)
+    elevation = int(random.random() * 0.2 * img_height)
+    shift = 0
     for terrain in terrains:
         img_data = draw_terrain(
-            img_data, terrain, terrain_height=max_terrain_height, elevation=elevation)
+            img_data, terrain, terrain_height=max_terrain_height, elevation=elevation, shift=shift)
         max_terrain_height = int(
-            (0.5 + random.random() * 0.3) * max_terrain_height)
-        elevation = 0.5 * elevation
+            (0.5 + random.random() * 0.2) * max_terrain_height)
+        shift = shift * -1 if shift else random.choice([-1, 1])
+        elevation = (0.1 + random.random() * 0.5) * elevation
 
     img_data = draw_moon(img_data)
 

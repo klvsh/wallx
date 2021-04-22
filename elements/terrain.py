@@ -34,12 +34,24 @@ def generate_naive_terrain(width):
     return [random.random() for i in range(width)]
 
 
-def generate_smooth_terrain(width, interpolation_fn=cosp, iterations=8):
+def generate_smooth_terrain(
+        width, interpolation_fn=cosp, iterations=8, shift=0):
     """Using naive terrain `naive_terrain` the function generates
     Linearly Interpolated Superpositioned terrain that looks real world like.
     """
     naive_terrain = generate_naive_terrain(width)
-
+    if shift == 0:
+        pass
+    elif shift < 0:
+        index = int((0.10 + (random.random() * 0.20)) * len(naive_terrain))
+        while index < len(naive_terrain):
+            naive_terrain[index] = 0
+            index += 1
+    else:
+        index = int((0.10 + (random.random() * 0.20)) * len(naive_terrain))
+        while index >= 0:
+            naive_terrain[index] = 0
+            index -= 1
     terrains = []
 
     # holds the sum of weights for normalization
@@ -89,15 +101,16 @@ def generate_smooth_terrain(width, interpolation_fn=cosp, iterations=8):
     return [sum(x) / weight_sum for x in zip(*terrains)]
 
 
-def generate_terrain(width, terrain_height, iterations=8):
-    terrain = generate_smooth_terrain(width, iterations=iterations)
+def generate_terrain(width, terrain_height, iterations=8, shift=0):
+    terrain = generate_smooth_terrain(
+        width, iterations=iterations, shift=shift)
     return [
         mapv(h, 0, 1, 0, terrain_height)
         for h in terrain
     ]
 
 
-def draw_terrain(img_data, terrain, terrain_height=360, elevation=0):
+def draw_terrain(img_data, terrain, terrain_height=360, elevation=0, shift=0):
     img_width, img_height = img_data.shape[1], img_data.shape[0]
     # colors = [
     #     [5, 20, 39, 255],
@@ -113,7 +126,7 @@ def draw_terrain(img_data, terrain, terrain_height=360, elevation=0):
 
     iterations = random.randint(terrain.min_iterations, terrain.max_iterations)
     terrain_heights = generate_terrain(
-        img_width, terrain_height, iterations=iterations)
+        img_width, terrain_height, iterations=iterations, shift=shift)
     terrain_heights = [h + elevation for h in terrain_heights]
 
     # Draw terrain

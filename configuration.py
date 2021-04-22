@@ -55,11 +55,18 @@ THEME_PITCH_BLACK = Theme(
     ],
     possible_terrains=[
         Terrain(
-            gradient=Gradient((165, 92, 27, 255), (0, 0, 0, 255)),
+            gradient=Gradient((35, 35, 35, 255), (35, 35, 35, 255)),
+        ),
+        Terrain(
+            gradient=Gradient((10, 10, 10, 255), (10, 10, 10, 255)),
+        ),
+        Terrain(
+            gradient=Gradient((25, 25, 25, 255), (25, 25, 25, 255)),
         ),
     ],
+    max_terrains=2,
     possible_stars_density=[
-        StarsDensity(0.05, 0.35),
+        StarsDensity(0.10, 0.35),
     ],
     possible_moon_arcs=[
         Moon.from_chord(0, 360),
@@ -78,6 +85,7 @@ THEME_MIGHTY_BLUE = Theme(
             gradient=Gradient((165, 92, 27, 255), (0, 0, 0, 255)),
         ),
     ],
+    max_terrains=2,
     possible_stars_density=[
         StarsDensity(0.05, 0.30),
     ],
@@ -95,6 +103,7 @@ THEME_EMERALD = Theme(
         Gradient((5, 34, 42, 255), (11, 54, 70, 255)),
         Gradient((5, 21, 28, 255), (22, 98, 122, 255)),
     ],
+    max_terrains=2,
     possible_terrains=[
         Terrain(
             gradient=Gradient((20, 20, 20, 255), (0, 0, 0, 255)),
@@ -149,6 +158,8 @@ class ConfigurationGenerator:
 
         if not theme:
             theme = random.choice(POSSIBLE_THEMES)
+        else:
+            theme = get_theme_by_name(theme)
 
         params = {
             "theme": theme,

@@ -100,16 +100,16 @@ def generate_terrain(width, height):
     ]
 
 
-def draw_terrain(img_data):
+def draw_terrain(img_data, terrain):
     img_width, img_height = img_data.shape[1], img_data.shape[0]
-    colors = [
-        [5, 20, 39, 255],
-        [11, 39, 76, 255],
-        [26, 0, 39, 255],
-        [1, 1, 1, 255],
-        [7, 22, 35, 255],
-    ]
-    terrain_color = np.array(random.choice(colors))
+    # colors = [
+    #     [5, 20, 39, 255],
+    #     [11, 39, 76, 255],
+    #     [26, 0, 39, 255],
+    #     [1, 1, 1, 255],
+    #     [7, 22, 35, 255],
+    # ]
+    terrain_color = np.array(terrain.gradient.start_rgba)
 
     img_data_terrain = np.zeros(img_data.shape, dtype=float)
     img_data_terrain = img_data_terrain.reshape(img_data.shape)

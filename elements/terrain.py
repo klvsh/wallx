@@ -124,8 +124,7 @@ def draw_terrain(img_data, terrain, terrain_height=360, elevation=0, shift=0):
     img_data_terrain = np.zeros(img_data.shape, dtype=float)
     img_data_terrain = img_data_terrain.reshape(img_data.shape)
 
-    # random.randint(terrain.min_iterations, terrain.max_iterations)
-    iterations = 10
+    iterations = random.randint(terrain.min_iterations, terrain.max_iterations)
     terrain_heights = generate_terrain(
         img_width, terrain_height, iterations=iterations, shift=shift)
     terrain_heights = [h + elevation for h in terrain_heights]

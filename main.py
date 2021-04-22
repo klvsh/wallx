@@ -45,7 +45,7 @@ def generate_image():
         shift = shift * -1 if shift else random.choice([-1, 1])
         elevation = (0.1 + random.random() * 0.5) * elevation
 
-    img_data = draw_moon(img_data)
+    img_data = draw_moon(img_data, configuration)
 
     img = Image.fromarray(np.uint8(img_data))
     img.save('wallpaper.png')

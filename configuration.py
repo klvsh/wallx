@@ -56,22 +56,22 @@ THEME_PITCH_BLACK = Theme(
     possible_terrains=[
         Terrain(
             gradient=Gradient((35, 35, 35, 255), (35, 35, 35, 255)),
-            min_iterations=8,
+            min_iterations=10,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((28, 28, 28, 255), (28, 28, 28, 255)),
-            min_iterations=8,
+            min_iterations=10,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((21, 21, 21, 255), (21, 21, 21, 255)),
-            min_iterations=8,
+            min_iterations=10,
             max_iterations=10,
         ),
         Terrain(
             gradient=Gradient((14, 14, 14, 255), (14, 14, 14, 255)),
-            min_iterations=8,
+            min_iterations=10,
             max_iterations=10,
         ),
     ],

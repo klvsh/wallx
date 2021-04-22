@@ -8,7 +8,7 @@ from PIL import Image, ImageDraw
 from elements.shapes import draw_circle
 
 
-def draw_moon(img_data):
+def draw_moon(img_data, configuration):
     moon_size = int((0.05 + (random.random() * 0.05)) *
                     min(img_data.shape[0], img_data.shape[1]))
 
@@ -38,8 +38,9 @@ def draw_moon(img_data):
         )
 
     # draw the moon
+    config_moon = random.choice(configuration.theme.possible_moon_arcs)
     draw.chord((pos_x + 0, pos_y + 0, pos_x + moon_size, pos_y + moon_size),
-               0, 360, fill=(255, 255, 255, 255))
+               *config_moon.chord, fill=(255, 255, 255, 255))
 
     # add it to the base image
     moon = np.array(img_moon.getdata())

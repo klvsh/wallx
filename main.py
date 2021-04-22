@@ -23,7 +23,7 @@ img_height = 720
 def generate_image():
     assert img_width >= img_height >= 360
     generator = ConfigurationGenerator()
-    configuration = generator.generate(theme="Gleamy Green")
+    configuration = generator.generate(theme="Emerald")
 
     img_data = draw_backdrop(img_width, img_height, configuration)
 

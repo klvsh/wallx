@@ -169,23 +169,26 @@ THEME_GLEAMY_GREEN = Theme(
 THEME_EMERALD = Theme(
     "Emerald",
     possible_backdrops=[
-        Gradient((5, 34, 42, 255), (22, 98, 122, 255)),
-        Gradient((5, 34, 42, 255), (11, 54, 70, 255)),
-        Gradient((5, 21, 28, 255), (22, 98, 122, 255)),
+        Gradient((15, 44, 51, 255), (61, 142, 133, 255)),
+        Gradient((30, 46, 49, 255), (156, 201, 176, 255)),
+        Gradient((5, 79, 80, 255), (1, 122, 121, 255)),
     ],
-    max_terrains=2,
+    max_terrains=3,
     possible_terrains=[
         Terrain(
-            gradient=Gradient((20, 20, 20, 255), (0, 0, 0, 255)),
+            gradient=Gradient((5, 5, 5, 255), (5, 5, 5, 255)),
+            min_iterations=10,
+            max_iterations=10,
         ),
         Terrain(
-            gradient=Gradient((20, 20, 20, 255), (5, 5, 5, 255)),
+            gradient=Gradient((4, 9, 6, 255), (4, 9, 6, 255)),
+            min_iterations=10,
+            max_iterations=10,
         ),
         Terrain(
-            gradient=Gradient((10, 10, 10, 255), (5, 5, 5, 255)),
-        ),
-        Terrain(
-            gradient=Gradient((10, 10, 10, 255), (0, 0, 0, 255)),
+            gradient=Gradient((16, 10, 10, 255), (16, 10, 10, 255)),
+            min_iterations=10,
+            max_iterations=10,
         ),
     ],
     possible_stars_density=[

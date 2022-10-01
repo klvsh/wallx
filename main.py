@@ -3,6 +3,8 @@
 #   - https://note.nkmk.me/en/python-numpy-generate-gradation-image/
 #
 
+import argparse
+
 import random
 import numpy as np
 
@@ -51,4 +53,12 @@ def generate_image():
     img.save('wallpaper.png')
 
 
-generate_image()
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='generate a beautiful wallpaper')
+    parser.add_argument('--width', type=int, default=720)
+    parser.add_argument('--height', type=int, default=720)
+
+    args = parser.parse_args()
+
+    img_width, img_height = args.width, args.height
+    generate_image()

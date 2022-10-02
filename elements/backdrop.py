@@ -1,6 +1,6 @@
 import random
 
-from elements.gradient import generate_gradient
+from colors.gradient import generate_gradient
 
 
 def draw_backdrop(img_width, img_height, configuration):

@@ -5,7 +5,7 @@ from numpy import asarray
 
 from PIL import Image, ImageDraw
 
-from elements.shapes import draw_circle
+from shapes.circle import draw_circle
 
 
 def draw_sun(img_data, sun_phase):

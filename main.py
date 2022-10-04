@@ -15,17 +15,17 @@ from elements.stars import draw_stars
 from elements.terrain import draw_terrain
 from elements.backdrop import draw_backdrop
 
-from configuration import ConfigurationGenerator
+from configuration import Configuration, ConfigurationGenerator, POSSIBLE_THEMES
 
 
 img_width = 720
 img_height = int(720 * 1.4)
 
 
-def generate_image():
+def generate_image(theme):
     assert img_width >= 360 <= img_height
     generator = ConfigurationGenerator()
-    configuration = generator.generate()
+    configuration = generator.generate(theme=theme)
 
     img_data = draw_backdrop(img_width, img_height, configuration)
 
@@ -57,8 +57,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='generate a beautiful wallpaper')
     parser.add_argument('--width', type=int, default=720)
     parser.add_argument('--height', type=int, default=720)
+    parser.add_argument('--theme', type=str, default="Emerald", choices=[theme.name for theme in POSSIBLE_THEMES])
 
     args = parser.parse_args()
 
     img_width, img_height = args.width, args.height
-    generate_image()
+    generate_image(args.theme)
